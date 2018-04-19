@@ -47,3 +47,23 @@ tutorial
 ```
 
 You can then `scp` or otherwise distribute this file to a production host.
+
+
+## python_app example
+
+When built with `python_app` support from https://github.com/pantsbuild/pants/pull/5704 we can
+build a self-contained binary along with DAGs in a deployable artifact.
+
+```
+$ PANTS_PLUGINS="[]" PANTS_VERSION=1.7.0.dev0 ../pants/pants bundle :example-airflow
+$ cd /tmp/example
+$ tar -xzvf /workspace/airflow-pex-example/dist/example-airflow.tar.gz
+./
+./main.pex
+./dags/
+./dags/dag.py
+$ AIRFLOW_HOME=$(pwd) ./main.pex list_tasks pants_example_dag
+[2018-04-19 03:45:44,849] {__init__.py:45} INFO - Using executor SequentialExecutor
+[2018-04-19 03:45:44,905] {models.py:189} INFO - Filling up the DagBag from /tmp/foo/dags
+print_date
+```
