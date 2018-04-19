@@ -1,5 +1,8 @@
 .cache/
+.idea/
 .pants.d/
 .pants.workdir.file_lock
 .pids/
+.venv/
 dist/
+*.iml
