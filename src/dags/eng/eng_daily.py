@@ -5,7 +5,7 @@ from example.airflow.operators.bash_operator import MyBashOperator
 
 
 dag = DAG(
-  dag_id='pants_example_dag',
+  dag_id='another_dag',
   default_args={
     'owner': 'airflow',
     'depends_on_past': False,

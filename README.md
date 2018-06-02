@@ -51,19 +51,23 @@ You can then `scp` or otherwise distribute this file to a production host.
 
 ## python_app example
 
-When built with `python_app` support from https://github.com/pantsbuild/pants/pull/5704 we can
+When using Pants 1.7.0rc0 or later which contains `python_app` support we can
 build a self-contained binary along with DAGs in a deployable artifact.
 
+Note how `src/dags:analytics` contains a directory of DAGs, which may be useful
+if multiple teams require separate DAGs, or you can use just one DAG dir.
+
 ```
-$ PANTS_PLUGINS="[]" PANTS_VERSION=1.7.0.dev0 ../pants/pants bundle :example-airflow
-$ cd /tmp/example
-$ tar -xzvf /workspace/airflow-pex-example/dist/example-airflow.tar.gz
-./
+$ ./pants bundle src/dags:analytics --bundle-py-archive=tgz
+$ $ cd dist/src.dags.analytics-bundle/
+$ $ find .
+.
 ./main.pex
-./dags/
-./dags/dag.py
-$ AIRFLOW_HOME=$(pwd) ./main.pex list_tasks pants_example_dag
-[2018-04-19 03:45:44,849] {__init__.py:45} INFO - Using executor SequentialExecutor
-[2018-04-19 03:45:44,905] {models.py:189} INFO - Filling up the DagBag from /tmp/foo/dags
+./analytics
+./analytics/analytics_daily.pyc
+./analytics/analytics_daily.py
+$ AIRFLOW_HOME=$(pwd) AIRFLOW__CORE__DAGS_FOLDER=$(pwd)/analytics ./main.pex list_tasks analytics_daily
+[2018-06-01 17:34:47,127] {__init__.py:45} INFO - Using executor SequentialExecutor
+[2018-06-01 17:34:47,174] {models.py:189} INFO - Filling up the DagBag from /Users/travis/src/airflow-pex-example/dist/src.dags.analytics-bundle/analytics
 print_date
 ```
