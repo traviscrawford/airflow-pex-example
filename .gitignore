@@ -6,3 +6,4 @@
 .venv/
 dist/
 *.iml
+/airflow

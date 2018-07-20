@@ -1,2 +1,2 @@
-apache-airflow==1.9.0
+apache-airflow[crypto]==1.9.0
 ipython==6.3.1
