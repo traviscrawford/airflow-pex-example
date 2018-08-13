@@ -9,3 +9,4 @@ dist/
 /airflow
 *.pyc
 __pycache__/
+.current_project
