@@ -10,3 +10,5 @@ dist/
 *.pyc
 __pycache__/
 .current_project
+.envrc
+
