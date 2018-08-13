@@ -71,3 +71,45 @@ $ AIRFLOW_HOME=$(pwd) AIRFLOW__CORE__DAGS_FOLDER=$(pwd)/analytics ./main.pex lis
 [2018-06-01 17:34:47,174] {models.py:189} INFO - Filling up the DagBag from /Users/travis/src/airflow-pex-example/dist/src.dags.analytics-bundle/analytics
 print_date
 ```
+
+## Working environment
+
+We show a working example of Airflow integrated into pants for development. [direnv](https://direnv.net/) is required to load `bin/airflow` and `bin/gunicorn` directly into the environment. This is explained in detail in `bin/README.md`. We use pyenv in the example, which is recommended but not required.
+
+#### Install dependencies
+
+	brew install direnv pyenv openssl
+	
+#### Copy the environment file
+
+	cp .envrc.example .envrc && direnv allow
+	
+#### Build
+
+	make
+
+#### View the help 
+
+	airflow --help
+	
+#### List the available DAGs
+
+	airflow list_dags
+	
+#### Initialize the database
+
+	airflow initdb 
+	
+#### Run the example workflow
+
+	airflow backfill analytics_daily -s 2018-01-01 -e 2018-01-01
+
+	
+#### List projects
+
+	change_project
+
+	
+#### Change project
+
+	change_project eng

@@ -8,12 +8,6 @@ build:
 dist:
 	./pants bundle src::
 
-images:
-	./pants bundle docker-python src::
-
-publish:
-	./pants docker-publish src::
-
 # Preserves build cache
 clean:
 	@rm -rf airflow/
@@ -24,5 +18,3 @@ clean-all: clean
 	@./pants clean-all
 	@rm -rf .pants.d/ .cache/ .pids/
 	@rm -f .pants.workdir.file_lock
-
-
