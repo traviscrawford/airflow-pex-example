@@ -7,3 +7,5 @@
 dist/
 *.iml
 /airflow
+*.pyc
+__pycache__/
