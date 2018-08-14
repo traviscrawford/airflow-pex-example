@@ -1,6 +1,6 @@
 set -euo pipefail
 
-[[ -f .current_project ]] || change_project example_project
+[[ -f .current_project ]] || change_project analytics
 CURRENT_DAG_FOLDER=$(cat .current_project)
 [[ -z $CURRENT_DAG_FOLDER ]] && { printf "CURRENT_DAG_FOLDER not set\n"; exit 1; }
 
