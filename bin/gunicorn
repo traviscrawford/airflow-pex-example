@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source bin/lib/common.sh
+
+echo "Running: gunicorn $@"
+exec ./pants -q run \
+  "src/py/example/airflow/gunicorn:airflow_gunicorn" -- "$@"

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+[[ ! -z ${1-} ]] || { printf "Usage: change_project [$(ls -m src/dags)]\n"; exit 1; }
+
+PROJECT_NAME=$1
+printf "Changing project: %s\n" "$PROJECT_NAME"
+printf "%s\n" "$PROJECT_NAME" > .current_project

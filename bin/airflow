@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+source bin/lib/common.sh
+
+exec ./pants -q run \
+  "src/py/example/airflow/cli:airflow_cli" -- "$@"

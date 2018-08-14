@@ -6,3 +6,9 @@
 .venv/
 dist/
 *.iml
+/airflow
+*.pyc
+__pycache__/
+.current_project
+.envrc
+
